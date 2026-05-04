@@ -1,0 +1,16 @@
+profiles/local/*.md
+!profiles/local/.gitkeep
+!profiles/local/README.md
+CUSTOMIZE.local.md
+memory/user-context.md
+memory/session-learnings.md
+memory/improvement-backlog.md
+private/
+*.docx
+*.pptx
+*.xlsx
+*.pdf
+*.zip
+*.rar
+*.7z
+*.log
