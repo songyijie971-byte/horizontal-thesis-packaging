@@ -48,6 +48,12 @@ Use this checklist before releasing a new version.
 - [ ] The skill has golden test outputs for representative suitable and unsuitable projects.
 - [ ] The skill has memory update templates for session learning and improvement backlog.
 - [ ] Memory updates require user confirmation and avoid sensitive project data.
+- [ ] The skill can judge whether a horizontal or engineering project is suitable as a resume asset.
+- [ ] Resume asset evaluation is secondary and does not replace the thesis suitability workflow.
+- [ ] Resume asset evaluation uses A/B/C/D ratings for strong, packageable, weak, and not-recommended resume projects.
+- [ ] Resume asset evaluation checks technical depth, personal contribution clarity, quantifiable results, interview explainability, job relevance, evidence support, and desensitized expressibility.
+- [ ] Resume output includes scoring table, rating rationale, confidence, target-role matching matrix, writeable content, content not recommended for resumes, contribution refinement, metric supplement plan, bullet variants, STAR/interview narrative, interview risks, and evidence backlog.
+- [ ] Resume bullet generation includes conservative, technical, and interview-strengthened versions.
 
 ## Safety
 
@@ -58,3 +64,7 @@ Use this checklist before releasing a new version.
 - [ ] It does not force small or unsuitable horizontal projects into complete thesis topics.
 - [ ] It supports data desensitization for enterprise projects.
 - [ ] It keeps personal memory and advisor preferences out of the public repository.
+- [ ] Resume bullets do not fabricate metrics.
+- [ ] Resume bullets do not exaggerate personal contribution.
+- [ ] Confidential projects are expressed with desensitized wording.
+- [ ] Content the student cannot explain is not recommended as a resume highlight.

@@ -26,6 +26,12 @@ Use these prompts to verify whether the skill should activate.
 20. 帮我模拟导师会怎么追问这个横向项目能不能写论文。
 21. 这个判断你有多大把握？请标注判断置信度。
 22. 每次回答后请主动告诉我下一步该做什么。
+23. 这个项目能不能写进简历？
+24. 帮我把这个横向项目整理成简历项目经历。
+25. 这个项目找工作怎么包装，面试怎么讲？
+26. 请给我保守版、技术版和面试强化版 bullet。
+27. 秋招投后端/AI 工程岗时，这个项目亮点怎么写？
+28. 帮我检查本人贡献和量化成果有没有夸大或讲不清。
 
 ## Should Not Trigger
 
@@ -70,6 +76,13 @@ Use these prompts to verify whether the skill should activate.
 - The model should include evidence and risk checks in complete packaging outputs.
 - The model should end major answers with 2-4 proactive next-step options, such as supplement evidence, generate handoff, simulate advisor questions, or set up optional memory.
 - The model should include a downstream handoff prompt when the user wants to continue with another paper-writing skill.
+- When the user only pastes project material, asks what the project is worth, asks for a complete assessment, or has resume intent, the model should append `## 简历资产转化评估` after the thesis evaluation unless the user explicitly asks for thesis-only/proposal-only/defense-only output.
+- The resume evaluation should classify projects as A/B/C/D: strong resume project, packageable resume project, weak resume project, or not recommended.
+- The resume evaluation should assess technical depth, personal contribution clarity, quantifiable results, interview explainability, job relevance, evidence support, and desensitized expressibility.
+- Unless the user asks for a short version, the resume evaluation should include rating rationale, confidence, target-role matching matrix, evidence-backed writeable content, contribution rewriting, metric supplement plan, STAR/interview narrative, interview risk table, and evidence backlog.
+- The model should produce conservative, technical, and interview-strengthened resume bullets when asked for bullet output.
+- The model should not fabricate metrics or exaggerate personal contribution in resume bullets.
+- The model should avoid recommending confidential, unsupported, or unexplainable content as resume highlights.
 - The model should recommend downstream writing routes such as master's thesis, EI, CCF-C, CCF-B, SCI, CCF-A, CVPR, or Nature only as writing directions, not as publication guarantees.
 - The model should assess downstream route feasibility only after thesis suitability, and should identify the most feasible route, secondary route, and routes not recommended.
 - The model should avoid recommending Nature as the current main route for ordinary master's horizontal projects unless the evidence is extraordinary.

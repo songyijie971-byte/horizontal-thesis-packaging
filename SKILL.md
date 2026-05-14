@@ -1,6 +1,6 @@
 ---
 name: horizontal-thesis-packaging
-description: Use when a user wants to judge whether a horizontal project, enterprise collaboration project, engineering system, AI application, robotics project, or applied research project can become a domestic master's thesis, proposal, midterm report, experiment plan, or defense PPT. Produces thesis suitability assessment, research-question conversion, chapter mapping, evidence ledger, personal contribution, experiment补全清单, academic-risk warnings, and downstream thesis-writing handoff. Do not use for ordinary coding, generic writing, image generation, API docs, non-thesis coursework, or pure code refactoring.
+description: Use when a user wants to judge whether a horizontal project, enterprise collaboration project, engineering system, AI application, robotics project, or applied research project can become a domestic master's thesis, defense PPT, or resume project asset. Produces thesis suitability assessment, research-question conversion, chapter mapping, evidence ledger, personal contribution, experiment补全清单, resume asset evaluation, interview-risk warnings, and downstream thesis-writing handoff. Do not use for ordinary coding, generic writing, image generation, API docs, non-thesis coursework, or pure code refactoring.
 ---
 
 # 横向项目转硕士论文
@@ -25,7 +25,7 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 
 ## 核心目标
 
-本 skill 是“横向项目理解器 + 论文转化蓝图生成器”，不是完整论文写作器。先判断项目是否值得转论文，再把真实工程项目转化为稳健、可答辩、可交接给下游论文写作 skill 的蓝图：
+本 skill 是“横向项目理解器 + 论文转化蓝图生成器”，不是完整论文写作器，也不是研究生全过程管理系统。主功能仍然是判断项目是否值得转论文；当用户有求职、简历或面试意图时，再追加判断项目是否适合写进简历。
 
 0. 项目事实 -> 论文适配度判断
 1. 业务需求 -> 技术痛点
@@ -34,6 +34,7 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 4. 工程模块 -> 论文章节
 5. 测试结果 -> 实验验证
 6. 项目成果 -> 论文转化交接包
+7. 项目成果 -> 简历资产评估与 bullet 草稿
 
 ## 核心交付
 
@@ -47,6 +48,7 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 6. 答辩护盾：创新点解释、本人工作量、数据来源、指标选择、部署真实性、工程与论文区别。
 7. 下游路线评估：判断国内硕士、EI、CCF-C/CCF-B、SCI、CCF-A/CVPR、Nature/Nature-style 哪条路线相对最稳。
 8. 下游提示词：把本次蓝图交给论文写作 skill 继续生成开题、章节、摘要或答辩稿。
+9. 简历资产评估：当用户问能不能写进简历、项目经历、面试怎么讲、找工作怎么包装、实习/秋招/春招、项目亮点、STAR、bullet 或量化成果时，读取 `references/resume-transfer-rules.md` 和 `templates/resume-asset-evaluation.md`。
 
 ## 总体原则
 
@@ -61,10 +63,11 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 - 先保证导师能接受、答辩能解释，再追求表达漂亮。
 - 每个结论都要有“证据、来源、风险、补救动作”。
 - 当材料不足时，输出“可写版本 + 待补材料 + 风险提示”，不要卡住。
+- 简历表达不能虚构指标、不能夸大本人贡献；涉密项目必须脱敏，讲不清的内容不要建议重点写。
 
 ## 快速判断
 
-先做两个判断：项目是否适合转论文，以及用户处于哪个阶段。只输出当前阶段真正需要的内容。
+先做两个判断：项目是否适合转论文，以及用户处于哪个阶段。用户只贴项目材料或要求完整评估时，默认再追加一次简历资产初判；用户明确只要论文、开题、中期、答辩等单项时，只输出当前阶段真正需要的内容。
 
 ### 论文转化适配度
 
@@ -97,6 +100,7 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 | --- | --- | --- |
 | 适配度评估模式 | “这个项目能不能写论文？” | A/B/C/D 结论、风险、替代路线 |
 | 论文转化蓝图模式 | “帮我看看怎么转论文” | 适配度、题目、研究问题、章节映射、证据台账 |
+| 简历资产评估模式 | “能不能写进简历/项目经历/面试怎么讲/bullet” | A/B/C/D 简历评级、投递方向、贡献提炼、指标建议、bullet、追问风险 |
 | 下游路线评估模式 | “更适合 EI/SCI/CCF-B/Nature 哪条路线？” | 国内硕士、EI、SCI、CCF-C/CCF-B、CCF-A/CVPR、Nature 的相对可行性 |
 | 下游交接模式 | “给 sciskill/sci/ei/ccfc/ccfb/ccfa/cvpr/nature/natureskill 继续写” | 推荐下游路线、论文转化交接包和后续提示词 |
 | 开题模式 | “开题怎么写？” | 背景、现状、目标、内容、路线、计划 |
@@ -339,6 +343,8 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 13. 可交给其他论文 skill 的后续提示词
 14. 下一步引导：给 2-4 个可选下一步，提示是否交给下游 skill、补材料、做导师追问或建立记忆
 
+用户只贴项目材料、询问“这个项目怎么样”、要求完整评估，或包含简历/求职/面试意图时，都要在论文评估输出后追加 `## 简历资产转化评估`：评分表、简历适配评级 A/B/C/D、评级理由与置信度、岗位匹配矩阵、可写/不建议写内容、本人贡献提炼、可量化指标补全方案、保守版/技术版/面试强化版 bullet、STAR 讲述稿、面试追问风险和补证据清单。只有用户明确限定“只看论文/只写开题/只做答辩”时才不追加。简历评级规则见 `references/resume-transfer-rules.md`。
+
 如果用户只要求某一项，只输出对应内容，不要强行输出全部。
 
 ## 输出质量要求
@@ -355,6 +361,7 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 - 每次回答末尾都要主动给“下一步建议”，但不要替用户自动执行；需要下游论文 skill 时，提示已安装则可继续交接，未安装则可使用 find-skills/找技能查找或安装。
 - 对开题、论文、答辩类输出，必须提醒哪些内容需要学校模板或导师口径确认。
 - 当用户准备交给其他论文 skill 继续写作，或询问更适合 EI/SCI/CCF-C/CCF-B/CCF-A/CVPR/Nature 哪条路线时，读取 `references/downstream-paper-route-assessment.md`，先推荐相对最稳路线、次优路线和暂不建议路线，再使用 `templates/thesis-conversion-handoff-template.md` 输出结构化交接包。推荐只代表后续写作方向和当前材料可行性，不承诺达到对应刊会或检索级别。
+- 简历 bullet 必须具体、克制、可追问；没有真实指标时只写“建议补充”，不要把建议写成已达成结果。
 
 ## 学校/导师风格 Profile
 
@@ -436,9 +443,10 @@ description: Use when a user wants to judge whether a horizontal project, enterp
 3. 个性化：`CUSTOMIZE.local.md`、`memory/user-context.md`、`CUSTOMIZE.md`、`profiles/profile-map.md`
 4. 单项目适配度评估：`templates/single-project-intake-template.md`、`references/project-suitability-assessment.md`、`references/quality-rubric.md`
 5. 论文转化蓝图：`references/topic-packaging.md`、`references/project-archetypes.md`、`references/claim-evidence-map.md`
-6. 下游路线评估：`references/downstream-paper-route-assessment.md`
-7. 下游交接：`templates/thesis-conversion-handoff-template.md`
-8. 实验设计：`templates/experiment-matrix-template.md`、`references/experiment-design.md`
-9. 下一步引导和提示词卡片：`templates/next-step-guidance-template.md`、`templates/prompt-cards.md`
-10. 答辩与风险：`references/defense-qa-bank.md`、`templates/advisor-challenge-simulator.md`、`references/anti-patterns.md`、`references/quality-rubric.md`
-11. 开源维护、自检和发布：`references/resource-index.md`、`scripts/validate-skill.ps1`、`tests/quality-gates.md`
+6. 简历资产评估：`templates/resume-asset-evaluation.md`、`references/resume-transfer-rules.md`
+7. 下游路线评估：`references/downstream-paper-route-assessment.md`
+8. 下游交接：`templates/thesis-conversion-handoff-template.md`
+9. 实验设计：`templates/experiment-matrix-template.md`、`references/experiment-design.md`
+10. 下一步引导和提示词卡片：`templates/next-step-guidance-template.md`、`templates/prompt-cards.md`
+11. 答辩与风险：`references/defense-qa-bank.md`、`templates/advisor-challenge-simulator.md`、`references/anti-patterns.md`、`references/quality-rubric.md`
+12. 开源维护、自检和发布：`references/resource-index.md`、`scripts/validate-skill.ps1`、`tests/quality-gates.md`

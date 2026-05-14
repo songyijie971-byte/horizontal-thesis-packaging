@@ -12,6 +12,7 @@ Use this index to load only the files needed for the user's current request.
 | Topic packaging, research question, contribution, feature-to-research conversion | `references/topic-packaging.md` |
 | Project archetype selection | `references/project-archetypes.md` |
 | Claim-evidence mapping and anti-fabrication | `references/claim-evidence-map.md` |
+| Resume asset evaluation, resume rating, bullet safety, interview defensibility | `references/resume-transfer-rules.md` |
 | First messy input and intake questions | `references/intake-question-bank.md` |
 | Thesis structure and chapter outline | `references/thesis-structure.md` |
 | Chapter writing, section expansion, figure placement | `references/chapter-writing-guide.md` |
@@ -33,6 +34,7 @@ Use this index to load only the files needed for the user's current request.
 | Proactive next-step guidance after each answer | `templates/next-step-guidance-template.md` |
 | First project intake | `templates/intake-form-template.md` |
 | Thesis conversion handoff brief for downstream writing skills | `templates/thesis-conversion-handoff-template.md` |
+| Resume asset evaluation template | `templates/resume-asset-evaluation.md` |
 | Evidence ledger | `templates/evidence-ledger-template.md` |
 | Experiment matrix | `templates/experiment-matrix-template.md` |
 | Proposal report | `templates/proposal-report-template.md` |
@@ -89,6 +91,9 @@ Use this index to load only the files needed for the user's current request.
 | Manipulator assembly | `examples/manipulator-assembly-example.md` |
 | Prediction model | `examples/prediction-model-example.md` |
 | Energy monitoring | `examples/energy-monitoring-example.md` |
+| Resume transfer example input | `examples/resume-transfer/input.md` |
+| Resume transfer full output | `examples/resume-transfer/output.md` |
+| Resume bullet variants | `examples/resume-transfer/bullets.md` |
 
 ## End-to-end examples
 

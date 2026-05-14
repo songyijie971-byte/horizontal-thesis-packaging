@@ -32,6 +32,15 @@ function Test-RequiredFile([string]$RelativePath) {
     return $true
 }
 
+function Test-RequiredDirectory([string]$RelativePath) {
+    $full = Join-Path $Root $RelativePath
+    if (-not (Test-Path -LiteralPath $full -PathType Container)) {
+        Add-Failure "Missing required directory: $RelativePath"
+        return $false
+    }
+    return $true
+}
+
 Write-Host "Validating skill at: $Root"
 
 $skillPath = Join-Path $Root 'SKILL.md'
@@ -101,12 +110,31 @@ $requiredFiles = @(
     'docs/usage-modes.md',
     'docs/open-source-customization.md',
     'docs/one-file-customization.md',
+    'templates/resume-asset-evaluation.md',
+    'references/resume-transfer-rules.md',
     'checklists/master-packaging-checklist.md',
     'checklists/pre-defense-checklist.md'
 )
 
 foreach ($file in $requiredFiles) {
     Test-RequiredFile $file | Out-Null
+}
+
+Test-RequiredDirectory 'examples/resume-transfer' | Out-Null
+
+$readmePath = Join-Path $Root 'README.md'
+$readmeText = Read-Utf8 $readmePath
+$resumeReadmeSection = -join @(
+    [char]0x9879, [char]0x76EE, [char]0x8F6C, [char]0x7B80,
+    [char]0x5386, [char]0x8D44, [char]0x4EA7, [char]0x8BC4,
+    [char]0x4F30
+)
+if (-not $readmeText.Contains($resumeReadmeSection)) {
+    Add-Failure 'README.md is missing the resume asset evaluation section.'
+}
+
+if ($skillText -notmatch 'resume-asset-evaluation') {
+    Add-Failure 'SKILL.md is missing resume-asset-evaluation routing.'
 }
 
 $allFiles = Get-ChildItem -LiteralPath $Root -Recurse -File
